@@ -5,7 +5,7 @@ import myImg2 from "./assets/images/master.png";
 
 function App() {
   return (
-    <div className="App">
+    <div className="credit-card">
       
       <img className="my-img-class" src={myImg} alt="This is an image" />
       <CreditCard

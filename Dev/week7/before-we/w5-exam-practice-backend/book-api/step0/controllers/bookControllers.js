@@ -16,12 +16,17 @@ const getAllBooks = async (req, res) => {
 const createBook = async (req, res) => {
   //res.send("createBook");
   try {
-    const newBook = await Book.create({ ...req.body});
+    const user_id = req.user._id
+    const newBook = await Book.create({ ...req.body, user_id,});
+    res.status(201).json(newBook);
+    await newBook.save();
     res.status(201).json(newBook);
   } catch (error) {
     res
-      .status(400)
-      .json({message: "Failed to create a book", error: error.message});
+      //.status(400)
+      //.json({message: "Failed to create a book", error: error.message});
+      console.error("Error creating book:", error);
+      res.status(500).json({ error: "Server Error" });
   }
 };
 
